@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kak Angka - Teman Belajar Matematika</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="notebook">
+    <header class="top">
+      <h1>Tanya Kak Angka</h1>
+      <p>Teman belajar matematika untuk kelas 1 sampai 6 SD</p>
+    </header>
+
+    <div id="chat-box" class="chat-box" role="log" aria-live="polite" aria-label="Percakapan dengan Kak Angka">
+      <div class="message bot">Halo! Aku Kak Angka. Kita belajar matematika bareng yuk. Kamu kelas berapa?</div>
+    </div>
+
+    <div class="chips" id="chips">
+      <button type="button" class="chip">Ajari aku perkalian</button>
+      <button type="button" class="chip">Apa itu pecahan?</button>
+      <button type="button" class="chip">Bantu soal cerita</button>
+    </div>
+
+    <form id="chat-form" class="composer" autocomplete="off">
+      <label for="user-input" class="visually-hidden">Tulis pertanyaanmu</label>
+      <input type="text" id="user-input" placeholder="Tulis soal atau pertanyaanmu di sini" maxlength="500" required />
+      <button type="submit" id="send-btn">Kirim</button>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

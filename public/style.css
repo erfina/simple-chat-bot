@@ -1,0 +1,210 @@
+:root {
+  --paper: #fbfdff;
+  --grid: #d6e4f5;
+  --ink: #1d3f7a;
+  --text: #22304a;
+  --margin-red: #e8707a;
+  --pencil: #f7c948;
+  --pencil-soft: #fff1bd;
+  --leaf: #2f9e6e;
+  --bot-bg: #e9f4ff;
+  --error: #b3261e;
+  --radius: 14px;
+  --font-display: "Baloo 2", "Trebuchet MS", sans-serif;
+  --font-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 24px 16px;
+  font-family: var(--font-body);
+  color: var(--text);
+  /* kertas kotak-kotak seperti buku tulis matematika */
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.notebook {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 20px 20px 18px 56px;
+  min-height: 0;
+}
+
+/* garis margin merah di sisi kiri, seperti buku tulis */
+.notebook::before,
+.notebook::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--margin-red);
+}
+.notebook::before { left: 36px; }
+.notebook::after { left: 41px; }
+
+.top h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.top p {
+  margin: 4px 0 14px;
+  font-size: 1rem;
+}
+
+.chat-box {
+  flex: 1;
+  min-height: 280px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 4px 12px 0;
+}
+
+.message {
+  max-width: 88%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.message.bot {
+  align-self: flex-start;
+  background: var(--bot-bg);
+  border: 2px solid var(--ink);
+  border-top-left-radius: 4px;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: var(--pencil-soft);
+  border: 2px solid var(--pencil);
+  border-top-right-radius: 4px;
+}
+
+.message.thinking {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.message.error {
+  background: #fdecea;
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 12px;
+}
+
+.chip {
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: transparent;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.chips[hidden] {
+  display: none;
+}
+
+.chip:hover { background: var(--pencil-soft); }
+
+.composer {
+  display: flex;
+  gap: 10px;
+}
+
+.composer input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 1.05rem;
+  color: var(--text);
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.composer button {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #fff;
+  background: var(--leaf);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 0 22px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.composer button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+.composer button:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; }
+
+:focus-visible {
+  outline: 3px solid var(--pencil);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  body { padding: 0; }
+  .notebook {
+    border-radius: 0;
+    border-width: 0;
+    box-shadow: none;
+    padding: 16px 14px 14px 44px;
+  }
+  .notebook::before { left: 26px; }
+  .notebook::after { left: 31px; }
+  .top h1 { font-size: 1.6rem; }
+  .message { max-width: 94%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
